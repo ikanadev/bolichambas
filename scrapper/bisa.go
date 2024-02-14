@@ -8,10 +8,14 @@ import (
 	"github.com/gocolly/colly"
 )
 
-func ParseBisaJobs() []Job {
-	const imgUrl = "https://www.grupobisa.com/assets/IconosEmpresas/BancoBisa.png"
-	const company = "Banco Bisa"
-	foundJobs := []Job{}
+func ParseBisaJobs() Company {
+	start := time.Now()
+	company := Company{
+		Name:    "Banco Bisa",
+		LogoUrl: "https://www.grupobisa.com/assets/IconosEmpresas/BancoBisa.png",
+		JobsUrl: "https://bancobisa.evaluar.com/convocatorias-2/",
+		Jobs:    []Job{},
+	}
 	c := colly.NewCollector(
 		colly.AllowedDomains("bancobisa.evaluar.com"),
 	)
@@ -25,29 +29,30 @@ func ParseBisaJobs() []Job {
 		job.Url = link
 		job.Title = title
 		job.Depto = depto
-		job.Company = company
-		job.ImageUrl = imgUrl
-		foundJobs = append(foundJobs, job)
-	})
-	c.OnRequest(func(r *colly.Request) {
-		fmt.Println("Searching Banco Bisa jobs...")
+		company.Jobs = append(company.Jobs, job)
 	})
 	c.OnError(func(_ *colly.Response, err error) {
-		fmt.Println("Error fetching Banco Bisa jobs:", err)
+		fmt.Printf("%s error: %v\n", company.Name, err)
 	})
-	c.Visit("https://bancobisa.evaluar.com/convocatorias-2/")
+	c.Visit(company.JobsUrl)
 
-	for i := range foundJobs {
-		ParseBisaJobDetails(&foundJobs[i])
+	for i := range company.Jobs {
+		ParseBisaJobDetails(&company.Jobs[i], company.Name)
 	}
 
-	return foundJobs
+	duration := time.Since(start)
+	fmt.Printf("%s: %d jobs parsed in %v\n", company.Name, len(company.Jobs), duration)
+
+	return company
 }
 
-func ParseBisaJobDetails(job *Job) {
+func ParseBisaJobDetails(job *Job, company string) {
 	c := colly.NewCollector(colly.AllowedDomains("bancobisa.evaluar.com"))
 	c.OnHTML("div.job_description", func(e *colly.HTMLElement) {
 		job.Content, _ = e.DOM.Html()
+	})
+	c.OnError(func(_ *colly.Response, err error) {
+		fmt.Printf("%s job error (%s): %v\n", company, job.Url, err)
 	})
 	c.OnHTML("div.job-overview", func(e *colly.HTMLElement) {
 		publishDateStr, _ := e.DOM.Find("time").Attr("datetime")
