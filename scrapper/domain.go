@@ -14,6 +14,7 @@ type Job struct {
 	Title       string     `json:"title"`
 	Depto       string     `json:"depto"`
 	Url         string     `json:"url"`
+	DataUrl     string     `json:"dataUrl"`
 	PublishDate *time.Time `json:"publishDate"`
 	DueDate     string     `json:"dueDate"`
 	Content     string     `json:"content"`
