@@ -24,6 +24,8 @@ func main() {
 	companies := []Company{}
 	// companies = append(companies, ParseBisaJobs())
 	// companies = append(companies, ParseFarmacorpJobs())
-	companies = append(companies, ParseSofiaJobs())
+	// companies = append(companies, ParseSofiaJobs())
+	// companies = append(companies, ParseEmbolJobs())
+	// companies = append(companies, ParseMercantilSantaCruzJobs())
 	saveData(&companies)
 }
