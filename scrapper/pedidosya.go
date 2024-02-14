@@ -8,17 +8,17 @@ import (
 	"time"
 )
 
-func parseTigoJobs() Company {
+func parsePedidosYaJobs() Company {
 	start := time.Now()
 	company := Company{
-		Name:    "Tigo",
-		LogoUrl: "https://images.tigocloud.net/j1bxozgharz5/boqFH1LxMcvZWBq99rTfqRe/67cff7425bdb82a76ea21f1df1ee8f7a/tigo-brand.svg",
-		JobsUrl: "https://tigo.wd3.myworkdayjobs.com/wday/cxs/tigo/tigocareers/jobs",
+		Name:    "Pedidos Ya",
+		LogoUrl: "https://empleos.pedidosya.com/wp-content/uploads/2021/04/logo_Pedidos_Ya.png",
+		JobsUrl: "https://deliveryhero.wd3.myworkdayjobs.com/wday/cxs/deliveryhero/pedidosya/jobs",
 		Jobs:    []Job{},
 	}
 	requestData := map[string]interface{}{
 		"appliedFacets": map[string]interface{}{
-			"locationCountry": []string{"db69bccc446c11de98360015c5e6daf6"},
+			"locations": []string{"faf13b71c117011521ebd0e83f01ea07", "3dd7a4ca02810165aa2f3fccd101ea60"},
 		},
 		"limit":      20,
 		"offset":     0,
@@ -48,14 +48,14 @@ func parseTigoJobs() Company {
 		fmt.Printf("%s error: %v\n", company.Name, err)
 	}
 	jobs := make([]Job, len(response.JobPostings))
-	basePath := "https://tigo.wd3.myworkdayjobs.com/wday/cxs/tigo/tigocareers"
+	basePath := "https://deliveryhero.wd3.myworkdayjobs.com/wday/cxs/deliveryhero/pedidosya"
 	for i := range response.JobPostings {
 		jobs[i] = Job{
 			Title:   response.JobPostings[i].Title,
 			DataUrl: basePath + response.JobPostings[i].ExternalPath,
 			Depto:   parseDepto(response.JobPostings[i].LocationsText),
 		}
-		parseTigoJob(&jobs[i], company.Name)
+		parsePedidosYaJob(&jobs[i], company.Name)
 	}
 	company.Jobs = jobs
 
@@ -64,7 +64,7 @@ func parseTigoJobs() Company {
 	return company
 }
 
-func parseTigoJob(job *Job, company string) {
+func parsePedidosYaJob(job *Job, company string) {
 	type JobPosting struct {
 		ExternalUrl    string `json:"externalUrl"`
 		JobDescription string `json:"jobDescription"`
