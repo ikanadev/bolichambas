@@ -31,42 +31,42 @@ func normalizeString(s string) string {
 	return s
 }
 
+func containsAnyOf(s string, list ...string) bool {
+	for i := range list {
+		if strings.Contains(s, list[i]) {
+			return true
+		}
+	}
+	return false
+}
+
 func parseDepto(depto string) string {
 	depto = normalizeString(depto)
-	if strings.Contains(depto, "lapaz") {
+	if containsAnyOf(depto, "lapaz", "lpz") {
 		return LaPaz
 	}
-	if strings.Contains(depto, "oruro") {
+	if containsAnyOf(depto, "oruro") {
 		return Oruro
 	}
-	if strings.Contains(depto, "potos") {
+	if containsAnyOf(depto, "potos", "uyuni") {
 		return Potosi
 	}
-	if strings.Contains(depto, "uyuni") {
-		return Potosi
-	}
-	if strings.Contains(depto, "cochabamba") {
+	if containsAnyOf(depto, "cochabamba", "cbba") {
 		return Cochabamba
 	}
-	if strings.Contains(depto, "chuquisaca") {
+	if containsAnyOf(depto, "chuquisaca", "sucre", "chuq") {
 		return Chuquisaca
 	}
-	if strings.Contains(depto, "sucre") {
-		return Chuquisaca
-	}
-	if strings.Contains(depto, "tarija") {
+	if containsAnyOf(depto, "tarija") {
 		return Tarija
 	}
-	if strings.Contains(depto, "santacruz") {
+	if containsAnyOf(depto, "santacruz", "scz") {
 		return SantaCruz
 	}
-	if strings.Contains(depto, "pando") {
+	if containsAnyOf(depto, "pando", "cobija") {
 		return Pando
 	}
-	if strings.Contains(depto, "beni") {
-		return Beni
-	}
-	if strings.Contains(depto, "trinidad") {
+	if containsAnyOf(depto, "beni", "trinidad", "be") {
 		return Beni
 	}
 	return ""

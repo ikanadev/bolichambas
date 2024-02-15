@@ -32,6 +32,7 @@ func main() {
 	// companies = append(companies, parsePilAndinaJobs())
 	// companies = append(companies, parseIntiJobs())
 	// companies = append(companies, parseBcpJobs())
-	companies = append(companies, parsePedidosYaJobs())
+	// companies = append(companies, parsePedidosYaJobs())
+	companies = append(companies, parseGanaderoJobs())
 	saveData(&companies)
 }
