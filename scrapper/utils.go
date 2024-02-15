@@ -42,7 +42,7 @@ func containsAnyOf(s string, list ...string) bool {
 
 func parseDepto(depto string) string {
 	depto = normalizeString(depto)
-	if containsAnyOf(depto, "lapaz", "lpz") {
+	if containsAnyOf(depto, "lapaz", "lpz", "alto") {
 		return LaPaz
 	}
 	if containsAnyOf(depto, "oruro") {
