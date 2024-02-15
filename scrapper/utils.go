@@ -42,25 +42,25 @@ func containsAnyOf(s string, list ...string) bool {
 
 func parseDepto(depto string) string {
 	depto = normalizeString(depto)
-	if containsAnyOf(depto, "lapaz", "lpz", "alto") {
+	if containsAnyOf(depto, "lapaz", "lpz", "alto", "payacamaya") {
 		return LaPaz
 	}
 	if containsAnyOf(depto, "oruro") {
 		return Oruro
 	}
-	if containsAnyOf(depto, "potos", "uyuni") {
+	if containsAnyOf(depto, "potos", "uyuni", "tupiza", "villazón") {
 		return Potosi
 	}
 	if containsAnyOf(depto, "cochabamba", "cbba") {
 		return Cochabamba
 	}
-	if containsAnyOf(depto, "chuquisaca", "sucre", "chuq") {
+	if containsAnyOf(depto, "chuquisaca", "sucre", "chuq", "padilla") {
 		return Chuquisaca
 	}
-	if containsAnyOf(depto, "tarija") {
+	if containsAnyOf(depto, "tarija", "yacuiba", "yacuíba") {
 		return Tarija
 	}
-	if containsAnyOf(depto, "santacruz", "scz") {
+	if containsAnyOf(depto, "santacruz", "scz", "sanignacio", "montero") {
 		return SantaCruz
 	}
 	if containsAnyOf(depto, "pando", "cobija") {
