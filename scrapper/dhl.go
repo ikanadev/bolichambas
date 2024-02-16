@@ -142,7 +142,6 @@ func parseDhlJob(job *Job, company string) {
 		if found {
 			return
 		}
-		fmt.Println("Script found")
 		found = true
 		var data struct {
 			Description string `json:"description"`

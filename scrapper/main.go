@@ -21,6 +21,7 @@ func saveData(companies *[]Company) {
 }
 
 func main() {
+	start := time.Now()
 	companies := []Company{}
 	companies = append(companies, parseBisaJobs())
 	companies = append(companies, parseFarmacorpJobs())
@@ -52,5 +53,11 @@ func main() {
 	companies = append(companies, ParseDiaconiaJobs())
 	companies = append(companies, parseDatecJobs())
 	companies = append(companies, parseCamsaJobs()) // 256 so fas
+	total := 0
+	for i := range companies {
+		total += len(companies[i].Jobs)
+	}
+	fmt.Println("#####################")
+	fmt.Printf("A total of %d jobs parsed in %v\n", total, time.Since(start))
 	saveData(&companies)
 }
