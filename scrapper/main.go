@@ -46,5 +46,6 @@ func main() {
 	// companies = append(companies, parseDhlJobs())
 	// companies = append(companies, parseTotalEnergiesJobs())
 	// companies = append(companies, parseFairPlayJobs()) // 229 so fas
+	companies = append(companies, parseMonopolJobs()) // 229 so fas
 	saveData(&companies)
 }
