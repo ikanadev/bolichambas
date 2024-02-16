@@ -48,6 +48,7 @@ func main() {
 	// companies = append(companies, parseFairPlayJobs())
 	// companies = append(companies, parseMonopolJobs())
 	// companies = append(companies, parseUnividaJobs())
-	companies = append(companies, parseBdpJobs()) // 240 so fas
+	// companies = append(companies, parseBdpJobs())
+	companies = append(companies, ParseDiaconiaJobs()) // 245 so fas
 	saveData(&companies)
 }
