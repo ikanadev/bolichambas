@@ -10,7 +10,7 @@ import (
 	"github.com/gocolly/colly"
 )
 
-func ParseFarmacorpJobs() Company {
+func parseFarmacorpJobs() Company {
 	type Data struct {
 		Data struct {
 			Offers []struct {

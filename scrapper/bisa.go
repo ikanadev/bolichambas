@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func ParseBisaJobs() Company {
+func parseBisaJobs() Company {
 	start := time.Now()
 	company := Company{
 		Name:    "Banco Bisa",
