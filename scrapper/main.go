@@ -34,16 +34,17 @@ func main() {
 	// companies = append(companies, parseBcpJobs())
 	// companies = append(companies, parsePedidosYaJobs())
 	// companies = append(companies, parseGanaderoJobs())
-	// companies = append(companies, parseEconomicoJobs()) // 141 jobs until now
-	// companies = append(companies, parseBagoJobs()) // 4
-	// companies = append(companies, parseGrupoVenadoJobs()) // 7
-	// companies = append(companies, ParseSolJobs()) // 13
-	// companies = append(companies, parseAlianzaJobs()) // 0
-	// companies = append(companies, parseFieJobs()) // 29
-	// companies = append(companies, parseVivaJobs()) // 2
-	// companies = append(companies, parseGrupoRodaJobs()) // 4
-	// companies = append(companies, parseLaPapeleraJobs()) // 1
-	// companies = append(companies, parseDhlJobs()) // 3
-	companies = append(companies, parseTotalEnergiesJobs()) // 3
+	// companies = append(companies, parseEconomicoJobs())
+	// companies = append(companies, parseBagoJobs())
+	// companies = append(companies, parseGrupoVenadoJobs())
+	// companies = append(companies, ParseSolJobs())
+	// companies = append(companies, parseAlianzaJobs())
+	// companies = append(companies, parseFieJobs())
+	// companies = append(companies, parseVivaJobs())
+	// companies = append(companies, parseGrupoRodaJobs())
+	// companies = append(companies, parseLaPapeleraJobs())
+	// companies = append(companies, parseDhlJobs())
+	// companies = append(companies, parseTotalEnergiesJobs())
+	// companies = append(companies, parseFairPlayJobs()) // 229 so fas
 	saveData(&companies)
 }
