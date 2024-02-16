@@ -51,7 +51,7 @@ func parseDepto(depto string) string {
 	if containsAnyOf(depto, "potos", "uyuni", "tupiza", "villazón") {
 		return Potosi
 	}
-	if containsAnyOf(depto, "cochabamba", "cbba") {
+	if containsAnyOf(depto, "cochabamba", "cbba", "sacaba") {
 		return Cochabamba
 	}
 	if containsAnyOf(depto, "chuquisaca", "sucre", "chuq", "padilla") {
