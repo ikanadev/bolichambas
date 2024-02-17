@@ -1,4 +1,4 @@
-import { Buildings, Location } from "./icons";
+import { Calendar, Location } from "./icons";
 import { JobItem } from "./utils";
 
 export default function JobCard(
@@ -13,14 +13,14 @@ export default function JobCard(
 				<img src={props.job.companyLogo} alt={props.job.company} class="w-full" />
 			</div>
 			<div class="card-body">
-				<h2 class="card-title">{props.job.title}</h2>
-				<p class="flex items-center">
-					<Buildings class="text-lg mr-1" />
-					{props.job.company}
-				</p>
+				<h2 class="card-title leading-none">{props.job.title}</h2>
 				<p class="flex items-center" classList={{ italic: !props.job.depto }}>
 					<Location class="text-lg mr-1" />
 					{props.job.depto || "No especificado"}
+				</p>
+				<p class="flex items-center" classList={{ italic: !props.job.publishDate }}>
+					<Calendar class="text-lg mr-1" />
+					{props.job.publishDate ? 'Publicado el ' + new Date(props.job.publishDate).toLocaleDateString() : "No especificado"}
 				</p>
 			</div>
 		</div>

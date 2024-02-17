@@ -1,4 +1,4 @@
-import { Match, Show, Switch, createEffect, createResource } from "solid-js";
+import { Match, Show, Switch, createResource } from "solid-js";
 import Filters from "./Filters"
 import Header from "./Header"
 import getData from "./data";
@@ -6,9 +6,7 @@ import Items from "./Items";
 
 function App() {
 	const [jobsRes] = createResource(getData);
-	createEffect(() => {
-		console.log(jobsRes.error);
-	});
+
 	return (
 		<>
 			<Header />
