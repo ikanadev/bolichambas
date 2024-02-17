@@ -9,7 +9,7 @@ function ItemInfo(props: { label: string, value: string, icon: JSX.Element }) {
 			<div>
 				<p class="text-sm leading-tight">{props.label}</p>
 				<p class="leading-tight" classList={{ italic: !props.value }}>
-					{props.value || "Sin especificar"}
+					{props.value || "No especificado"}
 				</p>
 			</div>
 		</div>

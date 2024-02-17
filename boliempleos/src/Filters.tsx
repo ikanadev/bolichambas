@@ -5,7 +5,7 @@ import { Depto, ALL_DEPTOS, DeptoOption } from "./utils";
 export default function Filters() {
 	const { depto, setDepto } = useAppState();
 	return (
-		<div class="navbar justify-end my-2 rounded-md">
+		<div class="navbar justify-end pb-0 rounded-md">
 			<label class="form-control items-start">
 				<div class="label pb-1">
 					<span class="label-text">Departamento</span>
