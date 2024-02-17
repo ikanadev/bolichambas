@@ -30,7 +30,7 @@ func parseGanaderoJobs() Company {
 
 		for i := range data {
 			dates := strings.Split(data[i][33], "-")
-			publishDate, _ := time.Parse("01/02/2006", strings.TrimSpace(dates[0]))
+			publishDate, _ := time.Parse("02/01/2006", strings.TrimSpace(dates[0]))
 			dueDate := strings.TrimSpace(dates[1])
 			jobs[i].Depto = parseDepto(data[i][16])
 			jobs[i].PublishDate = &publishDate
