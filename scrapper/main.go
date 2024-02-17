@@ -9,7 +9,8 @@ import (
 
 func saveData(companies *[]Company) {
 	now := time.Now()
-	jsonData, err := json.MarshalIndent(companies, "", "  ")
+	// jsonData, err := json.MarshalIndent(companies, "", "  ")
+	jsonData, err := json.Marshal(companies)
 	if err != nil {
 		panic(err)
 	}
