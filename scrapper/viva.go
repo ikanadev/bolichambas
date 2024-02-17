@@ -11,7 +11,7 @@ func parseVivaJobs() Company {
 	start := time.Now()
 	company := Company{
 		Name:    "Viva",
-		LogoUrl: "https://www.viva.com.bo/wp-content/uploads/2022/09/Logo-Viva.png",
+		LogoUrl: "https://talentoviva.hr-suite.app/img/logo-viva.png",
 		JobsUrl: "https://talentoviva.hr-suite.app/vacantes.php",
 		Jobs:    []Job{},
 	}
