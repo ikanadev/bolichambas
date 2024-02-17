@@ -11,7 +11,7 @@ export function AppStateProvider(props: { children: JSX.Element }) {
 
 	const appState = {
 		depto,
-		setDepto
+		setDepto,
 	};
 
 	return (
