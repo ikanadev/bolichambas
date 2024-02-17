@@ -1,10 +1,13 @@
 import { For, createMemo, createSignal } from "solid-js";
-import { Company, JobItem } from "./utils";
+import { ALL_DEPTOS, Company, JobItem } from "./utils";
 import JobCard from "./JobCard";
 import JobDetails from "./JobDetails";
+import { useAppState } from "./useAppState";
 
 export default function Items(props: { companies: Company[] }) {
 	const [selected, setSelected] = createSignal<JobItem | null>(null);
+
+	const { depto } = useAppState();
 
 	function closeModal() {
 		setSelected(null);
@@ -14,11 +17,13 @@ export default function Items(props: { companies: Company[] }) {
 		const items: Array<JobItem> = [];
 		props.companies.forEach((c) => {
 			c.jobs.forEach((j) => {
-				items.push({
-					company: c.name,
-					companyLogo: c.logoUrl,
-					...j,
-				});
+				if (j.depto === depto() || depto() === ALL_DEPTOS) {
+					items.push({
+						company: c.name,
+						companyLogo: c.logoUrl,
+						...j,
+					});
+				}
 			});
 		});
 		items.sort((a, b) => {

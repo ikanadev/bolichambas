@@ -1,21 +1,26 @@
 import { Accessor, JSX, createContext, createSignal, useContext } from "solid-js";
 import { DeptoOption, ALL_DEPTOS } from "./utils";
 
-const DeptoContext = createContext<{
+const AppStateContext = createContext<{
 	depto: Accessor<DeptoOption>;
 	setDepto: (d: DeptoOption) => void;
 }>();
 
-export function DeptoProvider(props: { children: JSX.Element }) {
+export function AppStateProvider(props: { children: JSX.Element }) {
 	const [depto, setDepto] = createSignal<DeptoOption>(ALL_DEPTOS);
 
+	const appState = {
+		depto,
+		setDepto
+	};
+
 	return (
-		<DeptoContext.Provider value={{ depto: depto, setDepto }}>
+		<AppStateContext.Provider value={appState}>
 			{props.children}
-		</DeptoContext.Provider>
+		</AppStateContext.Provider>
 	);
 }
 
-export function useDepto() {
-	return useContext(DeptoContext)!;
+export function useAppState() {
+	return useContext(AppStateContext)!;
 };

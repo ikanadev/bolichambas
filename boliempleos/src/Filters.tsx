@@ -1,6 +1,26 @@
+import { For } from "solid-js";
+import { useAppState } from "./useAppState";
+import { Depto, ALL_DEPTOS, DeptoOption } from "./utils";
+
 export default function Filters() {
+	const { depto, setDepto } = useAppState();
 	return (
-		<div class="navbar bg-base-200 justify-end my-2 rounded-md shadow-sm shadow-gray-600">
+		<div class="navbar justify-between my-2 rounded-md">
+			<label class="form-control items-start">
+				<div class="label pb-0">
+					<span class="label-text">Departamento</span>
+				</div>
+				<select
+					class="select select-bordered select-sm"
+					value={depto()}
+					onChange={(e) => setDepto(e.currentTarget.value as DeptoOption)}
+				>
+					<option value={ALL_DEPTOS}>Todos</option>
+					<For each={Object.values(Depto)}>
+						{(d) => <option value={d}>{d}</option>}
+					</For>
+				</select>
+			</label>
 			<label class="input input-bordered flex items-center gap-2">
 				<input type="text" class="grow" placeholder="Search" />
 				<svg
@@ -16,8 +36,6 @@ export default function Filters() {
 					/>
 				</svg>
 			</label>
-			<button class="btn">All</button>
-			<button class="btn">All</button>
 		</div>
 	)
 }

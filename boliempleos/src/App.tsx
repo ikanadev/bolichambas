@@ -1,12 +1,12 @@
 import Home from "./Home";
-import { DeptoProvider } from "./useDepto";
+import { AppStateProvider } from "./useAppState";
 
 function App() {
 
 	return (
-		<DeptoProvider>
+		<AppStateProvider>
 			<Home />
-		</DeptoProvider>
+		</AppStateProvider>
 	)
 }
 
