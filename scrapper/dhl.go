@@ -116,12 +116,11 @@ func parseDhlJobs() Company {
 
 	jobs := make([]Job, len(data.EagerLoadRefineSearch.Data.Jobs))
 	for i, respJob := range data.EagerLoadRefineSearch.Data.Jobs {
-		publishDate, _ := time.Parse("2006-01-02", respJob.PostedDate[:10])
 		jobs[i] = Job{
 			Title:       respJob.Title,
 			Area:        respJob.Category,
 			Url:         baseUrl + respJob.JobSeqNo + "/" + getFormattedTitle(respJob.Title),
-			PublishDate: &publishDate,
+			PublishDate: parseLaPazTime("2006-01-02", respJob.PostedDate[:10]),
 		}
 	}
 	company.Jobs = jobs

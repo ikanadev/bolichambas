@@ -134,9 +134,20 @@ func parseEvaluarDetails(job *Job, company string) {
 	c.OnHTML("div.job-overview", func(e *colly.HTMLElement) {
 		publishDateStr, _ := e.DOM.Find("time").Attr("datetime")
 		dueDate := e.DOM.ChildrenFiltered("ul").ChildrenFiltered("li:nth-child(2)").Find("span").Text()
-		publishDate, _ := time.Parse("2006-01-02", publishDateStr)
-		job.PublishDate = &publishDate
+		job.PublishDate = parseLaPazTime("2006-01-02", publishDateStr)
 		job.DueDate = dueDate
 	})
 	c.Visit(job.Url)
+}
+
+func parseLaPazTime(layout, dateStr string) *time.Time {
+	location, err := time.LoadLocation("America/La_Paz")
+	if err != nil {
+		return nil
+	}
+	date, err := time.ParseInLocation(layout, dateStr, location)
+	if err != nil {
+		return nil
+	}
+	return &date
 }

@@ -101,9 +101,8 @@ func parseFairPlayJob(job *Job, company string) {
 	if len(data) == 0 {
 		return
 	}
-	publishedDate, _ := time.Parse("2006-01-02", data[0].DateOpened)
 	job.Content = data[0].JobDescription
-	job.PublishDate = &publishedDate
+	job.PublishDate = parseLaPazTime("2006-01-02", data[0].DateOpened)
 	job.Area = data[0].Industry
 
 }

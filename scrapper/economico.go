@@ -31,10 +31,9 @@ func parseEconomicoJobs() Company {
 	jobs := make([]Job, len(data))
 	baseJobUrl := "https://empresas.evaluatest.com/vacante/"
 	for i := range data {
-		publishDate, _ := time.Parse("2006-01-02", data[i]["publicationDate"][0:10])
 		jobs[i].Title = data[i]["name"]
 		jobs[i].Depto = parseDepto(data[i]["location"])
-		jobs[i].PublishDate = &publishDate
+		jobs[i].PublishDate = parseLaPazTime("2006-01-02", data[i]["publicationDate"][0:10])
 		jobs[i].Url = baseJobUrl + data[i]["evaluationCode"]
 		parseEconomicoJob(&jobs[i], company.Name)
 	}

@@ -41,9 +41,8 @@ func parseVivaJob(job *Job, company string) {
 	c.OnHTML("div.card-body", func(e *colly.HTMLElement) {
 		dataCont := e.DOM.Find("p").First()
 		content := dataCont.Find("b")
-		publishDate, _ := time.Parse("2006-01-02", content.Eq(3).Text()[0:10])
 		job.Depto = parseDepto(content.Eq(0).Text())
-		job.PublishDate = &publishDate
+		job.PublishDate = parseLaPazTime("2006-01-02", content.Eq(3).Text()[0:10])
 		job.DueDate = content.Eq(5).Text()
 		job.Area = content.Eq(6).Text()
 

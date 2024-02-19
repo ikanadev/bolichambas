@@ -83,9 +83,8 @@ func parsePedidosYaJob(job *Job, company string) {
 	if err != nil {
 		fmt.Printf("%s job error (%s): %v\n", company, job.Url, err)
 	}
-	publishDate, _ := time.Parse("2006-01-02", resp.JobPostingInfo.StartDate)
 	job.Url = resp.JobPostingInfo.ExternalUrl
 	job.Content = resp.JobPostingInfo.JobDescription
-	job.PublishDate = &publishDate
+	job.PublishDate = parseLaPazTime("2006-01-02", resp.JobPostingInfo.StartDate)
 	job.Depto = parseDepto(resp.JobPostingInfo.Location)
 }
