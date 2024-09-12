@@ -8,7 +8,7 @@ import (
 func parseClinicaAmericasJobs() Company {
 	start := time.Now()
 	company := Company{
-		Name:    "Bebidas Bolivianas",
+		Name:    "Clínica de las Américas",
 		LogoUrl: "https://www.clinicadelasamericas.com.bo/wp-content/uploads/2022/05/clinica-de-las-americas-logo-white.png",
 		JobsUrl: "https://clinicadelasamericas.evaluar.com/jm-ajax/get_listings/?per_page=100",
 		Jobs:    []Job{},
