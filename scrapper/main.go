@@ -58,6 +58,7 @@ func main() {
 	companies = append(companies, parseClinicaAmericasJobs())
 	companies = append(companies, parseUPDSJobs())
 	companies = append(companies, parseProesaJobs())
+	companies = append(companies, parseUnionAgroJobs())
 	total := 0
 	for i := range companies {
 		total += len(companies[i].Jobs)
