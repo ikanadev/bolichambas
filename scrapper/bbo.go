@@ -5,12 +5,12 @@ import (
 	"time"
 )
 
-func parseIntiJobs() Company {
+func parseBBOJobs() Company {
 	start := time.Now()
 	company := Company{
-		Name:    "INTI",
-		LogoUrl: "https://www.inti.com.bo/wp-content/uploads/2023/07/Logo-INTI-Salud.png",
-		JobsUrl: "https://talento.inti.com.bo/jm-ajax/get_listings/?per_page=100",
+		Name:    "Bebidas Bolivianas",
+		LogoUrl: "https://www.bebidasbolivianas.com/wp-content/uploads/2020/08/LogoBBO.png",
+		JobsUrl: "https://bbo.evaluar.com/jm-ajax/get_listings/?per_page=100",
 		Jobs:    []Job{},
 	}
 
