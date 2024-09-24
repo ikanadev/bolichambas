@@ -3,9 +3,11 @@ import Filters from "./Filters"
 import Header from "./Header"
 import getData from "./data";
 import Items from "./Items";
+import { usePageView } from "./usePageView";
 
 function Home() {
 	const [jobsRes] = createResource(getData);
+	usePageView("/");
 
 	return (
 		<>
