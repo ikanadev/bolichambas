@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@rajesh896/broprint.js": "^2.1.1",
     "solid-js": "^1.8.15"
   },
   "devDependencies": {
