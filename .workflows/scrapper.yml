@@ -1,0 +1,46 @@
+name: Jobs scrapper
+on:
+  schedule:
+    - cron: "0 22 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  scrapper:
+    runs-on: ubuntu-latest
+    env:
+      FILENAME: 'jobs_$(date +%Y-%m-%d).json'
+      DATE: '$(date +%Y-%m-%d)'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22.x'
+          cache-dependency-path: ./scrapper/go.sum
+
+      - name: Setup dependencies
+        working-directory: ./scrapper
+        run: |
+          go get .
+
+      - name: Run Scrapper
+        working-directory: ./scrapper
+        run: |
+          go run .
+
+      - name: Move file
+        working-directory: ./scrapper
+        run: |
+          mv $FILENAME ../boliempleos/public/
+
+      - name: Change app current file
+        working-directory: ./boliempleos
+        run: |
+          sed -i "s/export const SCAN_DATE = .*/export const SCAN_DATE = \"${DATE}\";/" src/utils.ts
+
+      - name: Commit changes
+        uses: actions4git/add-commit-push@v1
