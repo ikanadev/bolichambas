@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -21,46 +22,107 @@ func saveData(companies *[]Company) {
 	}
 }
 
+func addCompanyData(companies *[]Company, mu *sync.Mutex, fn func() Company) {
+	company := fn()
+	mu.Lock()
+	defer mu.Unlock()
+	*companies = append(*companies, company)
+}
+
+var parsers = [](func() Company){
+	parseBisaJobs,
+	parseFarmacorpJobs,
+	ParseSofiaJobs,
+	ParseEmbolJobs,
+	ParseMercantilSantaCruzJobs,
+	ParseBNBJobs,
+	parseTigoJobs,
+	parsePilAndinaJobs,
+	parseIntiJobs,
+	parseBcpJobs,
+	parsePedidosYaJobs,
+	parseGanaderoJobs,
+	parseEconomicoJobs,
+	parseBagoJobs,
+	parseGrupoVenadoJobs,
+	ParseSolJobs,
+	parseAlianzaJobs,
+	parseFieJobs,
+	parseVivaJobs,
+	parseGrupoRodaJobs,
+	parseLaPapeleraJobs,
+	parseDhlJobs,
+	parseTotalEnergiesJobs,
+	parseFairPlayJobs,
+	parseMonopolJobs,
+	parseUnividaJobs,
+	parseBdpJobs,
+	ParseDiaconiaJobs,
+	parseDatecJobs,
+	parseCamsaJobs,
+	parseBBOJobs,
+	parseClinicaAmericasJobs,
+	parseUPDSJobs,
+	parseProesaJobs,
+	parseUnionAgroJobs,
+	parseSoboceJobs,
+	parseOpalJobs,
+}
+
 func main() {
+	var mu sync.Mutex
+	var wg sync.WaitGroup
+
 	start := time.Now()
 	companies := []Company{}
-	companies = append(companies, parseBisaJobs())
-	companies = append(companies, parseFarmacorpJobs())
-	companies = append(companies, ParseSofiaJobs())
-	companies = append(companies, ParseEmbolJobs())
-	companies = append(companies, ParseMercantilSantaCruzJobs())
-	companies = append(companies, ParseBNBJobs())
-	companies = append(companies, parseTigoJobs())
-	companies = append(companies, parsePilAndinaJobs())
-	companies = append(companies, parseIntiJobs())
-	companies = append(companies, parseBcpJobs())
-	companies = append(companies, parsePedidosYaJobs())
-	companies = append(companies, parseGanaderoJobs())
-	companies = append(companies, parseEconomicoJobs())
-	companies = append(companies, parseBagoJobs())
-	companies = append(companies, parseGrupoVenadoJobs())
-	companies = append(companies, ParseSolJobs())
-	companies = append(companies, parseAlianzaJobs())
-	companies = append(companies, parseFieJobs())
-	companies = append(companies, parseVivaJobs())
-	companies = append(companies, parseGrupoRodaJobs())
-	companies = append(companies, parseLaPapeleraJobs())
-	companies = append(companies, parseDhlJobs())
-	companies = append(companies, parseTotalEnergiesJobs())
-	companies = append(companies, parseFairPlayJobs())
-	companies = append(companies, parseMonopolJobs())
-	companies = append(companies, parseUnividaJobs())
-	companies = append(companies, parseBdpJobs())
-	companies = append(companies, ParseDiaconiaJobs())
-	companies = append(companies, parseDatecJobs())
-	companies = append(companies, parseCamsaJobs()) // 256 so fas
-	companies = append(companies, parseBBOJobs())
-	companies = append(companies, parseClinicaAmericasJobs())
-	companies = append(companies, parseUPDSJobs())
-	companies = append(companies, parseProesaJobs())
-	companies = append(companies, parseUnionAgroJobs())
-	companies = append(companies, parseSoboceJobs())
-	companies = append(companies, parseOpalJobs())
+
+	wg.Add(len(parsers))
+	for _, fn := range parsers {
+		go func() {
+			addCompanyData(&companies, &mu, fn)
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+	/*
+		companies = append(companies, parseBisaJobs())
+		companies = append(companies, parseFarmacorpJobs())
+		companies = append(companies, ParseSofiaJobs())
+		companies = append(companies, ParseEmbolJobs())
+		companies = append(companies, ParseMercantilSantaCruzJobs())
+		companies = append(companies, ParseBNBJobs())
+		companies = append(companies, parseTigoJobs())
+		companies = append(companies, parsePilAndinaJobs())
+		companies = append(companies, parseIntiJobs())
+		companies = append(companies, parseBcpJobs())
+		companies = append(companies, parsePedidosYaJobs())
+		companies = append(companies, parseGanaderoJobs())
+		companies = append(companies, parseEconomicoJobs())
+		companies = append(companies, parseBagoJobs())
+		companies = append(companies, parseGrupoVenadoJobs())
+		companies = append(companies, ParseSolJobs())
+		companies = append(companies, parseAlianzaJobs())
+		companies = append(companies, parseFieJobs())
+		companies = append(companies, parseVivaJobs())
+		companies = append(companies, parseGrupoRodaJobs())
+		companies = append(companies, parseLaPapeleraJobs())
+		companies = append(companies, parseDhlJobs())
+		companies = append(companies, parseTotalEnergiesJobs())
+		companies = append(companies, parseFairPlayJobs())
+		companies = append(companies, parseMonopolJobs())
+		companies = append(companies, parseUnividaJobs())
+		companies = append(companies, parseBdpJobs())
+		companies = append(companies, ParseDiaconiaJobs())
+		companies = append(companies, parseDatecJobs())
+		companies = append(companies, parseCamsaJobs()) // 256 so fas
+		companies = append(companies, parseBBOJobs())
+		companies = append(companies, parseClinicaAmericasJobs())
+		companies = append(companies, parseUPDSJobs())
+		companies = append(companies, parseProesaJobs())
+		companies = append(companies, parseUnionAgroJobs())
+		companies = append(companies, parseSoboceJobs())
+		companies = append(companies, parseOpalJobs())
+	*/
 	total := 0
 	for i := range companies {
 		total += len(companies[i].Jobs)
