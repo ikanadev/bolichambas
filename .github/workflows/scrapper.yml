@@ -7,12 +7,13 @@ on:
 jobs:
   scrapper:
     runs-on: ubuntu-latest
-    env:
-      FILENAME: 'jobs_$(date +%Y-%m-%d).json'
-      DATE: '$(date +%Y-%m-%d)'
     permissions:
       contents: write
     steps:
+      - name: Env variables
+        run: |
+          echo "DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+          echo "FILENAME=jobs_$(date +%Y-%m-%d).json" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -35,12 +36,12 @@ jobs:
       - name: Move file
         working-directory: ./scrapper
         run: |
-          mv $FILENAME ../boliempleos/public/
+          mv ${{ env.FILENAME }} ../boliempleos/public/
 
       - name: Change app current file
         working-directory: ./boliempleos
         run: |
-          sed -i "s/export const SCAN_DATE = .*/export const SCAN_DATE = \"${DATE}\";/" src/utils.ts
+          sed -i "s/export const SCAN_DATE = .*/export const SCAN_DATE = \"${{ env.DATE }}\";/" src/utils.ts
 
       - name: Commit changes
         uses: actions4git/add-commit-push@v1
