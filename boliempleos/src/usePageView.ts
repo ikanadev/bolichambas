@@ -1,3 +1,4 @@
+// @ts-ignore
 import { getCurrentBrowserFingerPrint } from "@rajesh896/broprint.js";
 import { onMount, createSignal } from "solid-js";
 

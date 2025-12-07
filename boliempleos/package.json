@@ -9,16 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@rajesh896/broprint.js": "^2.1.1",
-    "solid-js": "^1.8.15"
+    "@rajesh896/broprint.js": "^2.2.0",
+    "solid-js": "^1.9.10"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.17",
-    "daisyui": "^4.7.2",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.3",
-    "vite-plugin-solid": "^2.10.1"
+    "@tailwindcss/vite": "^4.1.17",
+    "autoprefixer": "^10.4.22",
+    "daisyui": "^5.5.8",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.6",
+    "vite-plugin-solid": "^2.11.10"
   }
 }
