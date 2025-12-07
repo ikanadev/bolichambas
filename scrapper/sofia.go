@@ -9,7 +9,7 @@ func ParseSofiaJobs() Company {
 	start := time.Now()
 	company := Company{
 		Name:    "Sofía",
-		LogoUrl: "https://sofia.com.bo/wp-content/themes/sofia/images/sofia-logo.svg",
+		LogoUrl: "https://sofia.com.bo/cdn/shop/files/Logos_Sofia.png",
 		JobsUrl: "https://sofia.evaluar.com/jm-ajax/get_listings/?per_page=100",
 		Jobs:    []Job{},
 	}

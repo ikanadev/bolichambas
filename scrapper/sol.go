@@ -9,7 +9,7 @@ func ParseSolJobs() Company {
 	start := time.Now()
 	company := Company{
 		Name:    "Banco Sol",
-		LogoUrl: "https://www.bancosol.com.bo/wp-content/uploads/2022/07/Logo-.png",
+		LogoUrl: "https://cdn.modyo.cloud/uploads/58dd57da-031f-42e8-ba3c-c5d78bffc7fb/original/logo_bancosol.svg",
 		JobsUrl: "https://bancosol.evaluar.com/jm-ajax/get_listings/?per_page=100",
 		Jobs:    []Job{},
 	}

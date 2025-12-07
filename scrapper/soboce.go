@@ -9,7 +9,7 @@ func parseSoboceJobs() Company {
 	start := time.Now()
 	company := Company{
 		Name:    "Soboce",
-		LogoUrl: "https://www.soboce.com/wp-content/uploads/2023/10/Logo-Cabecera.webp",
+		LogoUrl: "https://soboce.com/wp-content/uploads/2025/02/Logo-Soboce.webp",
 		JobsUrl: "https://soboce.evaluar.com/jm-ajax/get_listings/?per_page=100",
 		Jobs:    []Job{},
 	}
