@@ -34,4 +34,4 @@ export enum Depto {
 
 export type DeptoOption = Depto | typeof ALL_DEPTOS;
 
-export const SCAN_DATE = "2026-03-06";
+export const SCAN_DATE = "2026-03-09";
